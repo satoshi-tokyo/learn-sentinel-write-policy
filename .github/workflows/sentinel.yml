@@ -30,4 +30,4 @@ jobs:
       - name: Create JSON plan for Sentinel
         run: terraform show -json tfplan | jq > plan.json
       - name: Run Sentinel and store the result as JSON
-        run: sentinel apply -json > results.json
+        run: sentinel apply
