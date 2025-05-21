@@ -21,8 +21,6 @@ jobs:
       #     unzip "$FILENAME" -d $HOME/bin
       #     chmod +x $HOME/bin/sentinel
       #     echo "$HOME/bin" >> $GITHUB_PATH
-      - name: echo
-        run: echo $AWS_ACCESS_KEY_ID
       - name: Initialize Terraform configuration
         run: terraform init
       - name: Run Terraform plan
