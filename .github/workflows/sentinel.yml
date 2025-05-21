@@ -5,7 +5,7 @@ on:
 
 jobs:
   policy-as-code:
-    runs-on: ip-172-31-7-26
+    runs-on: self-hosted
     defaults:
       run:
         working-directory: .
