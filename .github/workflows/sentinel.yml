@@ -1,9 +1,7 @@
 name: HashiCorp Sentinel workflow for Terraform
 
 on:
-  pull_request:
-    branches:
-      - main
+  - push
 
 jobs:
   policy-as-code:
