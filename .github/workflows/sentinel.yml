@@ -1,9 +1,35 @@
-name: Sentinel
+name: HashiCorp Sentinel workflow for Terraform
+
 on:
-  - push
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  echo:
-    runs-on: self-hosted
+  policy-as-code:
+    runs-on: ip-172-31-7-26
+    defaults:
+      run:
+        working-directory: .
+    env:
+      SENTINEL_VERSION: 0.40.0
     steps:
-      - name: Run 
-        run: sentinel test restrict-aws-instances-type-and-tag.sentinel
+      - name: Check-out source code
+        uses: actions/checkout@v4
+      - name: Install Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+      - name: Install Sentinel CLI
+        run: |
+          FILENAME="sentinel_${{ env.SENTINEL_VERSION }}_linux_amd64.zip"
+          wget "https://releases.hashicorp.com/sentinel/${{ env.SENTINEL_VERSION }}/$FILENAME"
+          unzip "$FILENAME" -d $HOME/bin
+          chmod +x $HOME/bin/sentinel
+          echo "$HOME/bin" >> $GITHUB_PATH
+      - name: Initialize Terraform configuration
+        run: terraform init
+      - name: Run Terraform plan and create JSON plan for Sentinel
+        run: |
+          terraform plan -out tfplan
+          terraform show -json tfplan | jq > plan.json
+      - name: Run Sentinel and store the result as JSON
+        run: sentinel apply -json > results.json
