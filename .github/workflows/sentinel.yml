@@ -9,8 +9,6 @@ jobs:
     defaults:
       run:
         working-directory: .
-    env:
-      SENTINEL_VERSION: 0.40.0
     steps:
       - name: Check-out source code
         uses: actions/checkout@v4
