@@ -25,9 +25,9 @@ jobs:
         run: echo $AWS_ACCESS_KEY_ID
       - name: Initialize Terraform configuration
         run: terraform init
-      - name: Run Terraform plan and create JSON plan for Sentinel
-        run: |
-          terraform plan -out tfplan
-          terraform show -json tfplan | jq > plan.json
+      - name: Run Terraform plan
+        run: terraform plan -out tfplan
+      - name: Create JSON plan for Sentinel
+        run: terraform show -json tfplan | jq > plan.json
       - name: Run Sentinel and store the result as JSON
         run: sentinel apply -json > results.json
