@@ -11,6 +11,7 @@ jobs:
         working-directory: .
     env:
       SENTINEL_VERSION: 0.40.0
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
     steps:
       - name: Check-out source code
         uses: actions/checkout@v4
