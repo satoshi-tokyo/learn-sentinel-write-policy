@@ -14,15 +14,15 @@ jobs:
     steps:
       - name: Check-out source code
         uses: actions/checkout@v4
-      - name: Install Terraform CLI
-        uses: hashicorp/setup-terraform@v3
-      - name: Install Sentinel CLI
-        run: |
-          FILENAME="sentinel_${{ env.SENTINEL_VERSION }}_linux_amd64.zip"
-          wget "https://releases.hashicorp.com/sentinel/${{ env.SENTINEL_VERSION }}/$FILENAME"
-          unzip "$FILENAME" -d $HOME/bin
-          chmod +x $HOME/bin/sentinel
-          echo "$HOME/bin" >> $GITHUB_PATH
+      # - name: Install Terraform CLI
+      #   uses: hashicorp/setup-terraform@v3
+      # - name: Install Sentinel CLI
+      #   run: |
+      #     FILENAME="sentinel_${{ env.SENTINEL_VERSION }}_linux_amd64.zip"
+      #     wget "https://releases.hashicorp.com/sentinel/${{ env.SENTINEL_VERSION }}/$FILENAME"
+      #     unzip "$FILENAME" -d $HOME/bin
+      #     chmod +x $HOME/bin/sentinel
+      #     echo "$HOME/bin" >> $GITHUB_PATH
       - name: Initialize Terraform configuration
         run: terraform init
       - name: Run Terraform plan and create JSON plan for Sentinel
