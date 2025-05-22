@@ -25,6 +25,8 @@ jobs:
       #     echo "$HOME/bin" >> $GITHUB_PATH
       - name: Initialize Terraform configuration
         run: terraform init
+        env:
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
       - name: Run Terraform plan
         run: terraform plan -out tfplan
       - name: Create JSON plan for Sentinel
