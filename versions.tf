@@ -1,7 +1,4 @@
 terraform {
-  backend "local" {
-    path = "terraform.tfstate"
-  }
   required_providers {
     random = {
       source  = "hashicorp/random"
@@ -14,4 +11,11 @@ terraform {
   }
 
   required_version = ">= 0.15"
+  backend "remote" {
+    organization = "learn-terraform-sentinel-sato"
+
+    workspaces {
+      name = "learn-terraform-sentinel-dev"
+    }
+  }
 }
