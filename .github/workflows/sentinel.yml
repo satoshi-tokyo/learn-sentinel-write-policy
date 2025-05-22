@@ -29,6 +29,8 @@ jobs:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
       - name: Run Terraform plan
         run: terraform plan -out tfplan
+        env:
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
       - name: Create JSON plan for Sentinel
         run: terraform show -json tfplan | jq > plan.json
       - name: Run Sentinel and store the result as JSON
