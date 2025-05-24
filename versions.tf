@@ -13,9 +13,5 @@ terraform {
   required_version = ">= 0.15"
   backend "remote" {
     organization = "learn-terraform-sentinel-sato"
-
-    workspaces {
-      name = "learn-terraform-sentinel-dev"
-    }
   }
 }

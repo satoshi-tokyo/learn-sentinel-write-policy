@@ -24,7 +24,7 @@ jobs:
       #     chmod +x $HOME/bin/sentinel
       #     echo "$HOME/bin" >> $GITHUB_PATH
       - name: Initialize Terraform configuration
-        run: terraform init
+        run: terraform init -backend-config=dev.tfbackend
         env:
           TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
       - name: Run Terraform plan

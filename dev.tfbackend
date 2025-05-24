@@ -1,0 +1,4 @@
+
+workspaces {
+    name = "learn-sentinel-write-policy-dev"
+}
