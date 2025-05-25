@@ -35,3 +35,8 @@ jobs:
         run: terraform show -json tfplan | jq > plan.json
       - name: Run Sentinel and store the result as JSON
         run: sentinel apply
+      - name: Sync `staging`
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git push origin --force dev:staging
