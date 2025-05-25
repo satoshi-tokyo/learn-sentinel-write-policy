@@ -40,6 +40,7 @@ jobs:
         run: sentinel apply
 
   merge-branch:
+    needs: policy-as-code
     runs-on: self-hosted
     defaults:
       run:
