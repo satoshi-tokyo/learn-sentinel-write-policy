@@ -5,6 +5,9 @@ on:
     branches:
       - dev
 
+permissions:
+  contents: write
+
 jobs:
   policy-as-code:
     runs-on: self-hosted
@@ -35,6 +38,15 @@ jobs:
         run: terraform show -json tfplan | jq > plan.json
       - name: Run Sentinel and store the result as JSON
         run: sentinel apply
+
+  merge-branch:
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
       - name: Sync `staging`
         run: |
           git config user.name github-actions
