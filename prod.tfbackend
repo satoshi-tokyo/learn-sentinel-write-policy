@@ -1,5 +1,5 @@
 hostname = "app.terraform.io"
 organization = "learn-terraform-sentinel-sato"
 workspaces {
-  name = "learn-sentinel-write-policy-dev"
+  name = "learn-sentinel-write-policy"
 }
